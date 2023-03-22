@@ -4,39 +4,40 @@ url = "C://cosas uni//3Tercero//ExamenPython//Examen2023Python//winequality.csv"
 
 def read_data(fichero):
     with open(fichero, 'r') as file:
+        dic_anidado = {}
         dic = {}
         contador = 0
-        contador_lineas = 0
         reader = csv.reader(file)
         for row in reader:
-                dic = {row[0]:row} 
-    return dic
+            if row != 0:
 
-print(read_data(url))
+                dic["type"] = row[0]
+                dic["fixed acidity"] = row[1]
+                dic["volatile acidity"] = row[2]
+                dic["citric acid"] = row[3]
+                dic["residual sugar"] = row[4]
+                dic["chlorides"] = row[5]
+                dic["free sulfur dioxide"] = row[6]
+                dic["total sulfur dioxide"] = row[7]
+                dic["density"] = row[8]
+                dic["pH"] = row[9]
+                dic["sulphates"] = row[10]
+                dic["alcohol"] = row[11]
+                dic["quality"] = row[12]
+
+                dic_anidado["dato "+str(contador)] = dic
+                contador = contador+1
+    return dic_anidado
+
+#print(read_data(url))
 
 
 def split(dic):
     dic_white = {}
     dic_red = {}
 
-    for key in dic:
-       # if dic[key]["white"]:
-        #    dic_white.append(dic[key])
-        print(dic[key])
+    
     return dic_white, dic_red
 
-
-
-dic = {"dato1":{
-    "type":"white",
-    "fixed acidity":"7",
-    "volatile acidity":"0,27",
-    "citrid acid":"0.36"
-},"dato2":{
-    "type":"white",
-    "fixed acidity":"7",
-    "volatile acidity":"0,27",
-    "citrid acid":"0.36"}
-
-}
+print(split(read_data(url)))
 
