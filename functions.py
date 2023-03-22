@@ -32,12 +32,15 @@ def read_data(fichero):
 #print(read_data(url))
 
 
-def split(dic):
+def split(dic_anidado):
     dic_white = {}
     dic_red = {}
 
-    
+    dic_white = { dic for dic in dic_anidado if dic_anidado[dic]["type"] == "white"}
+    dic_red = { dic for dic in dic_anidado if dic_anidado[dic]["type"] == "red"}
     return dic_white, dic_red
 
 print(split(read_data(url)))
 
+def reduce(dic_anidado,atributo):
+    lista = [dic for dic in dic_anidado if dic_anidado[dic] == atributo]
