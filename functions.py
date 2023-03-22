@@ -40,7 +40,14 @@ def split(dic_anidado):
     dic_red = { dic for dic in dic_anidado if dic_anidado[dic]["type"] == "red"}
     return dic_white, dic_red
 
-print(split(read_data(url)))
+dics = split(read_data(url))
 
 def reduce(dic_anidado,atributo):
-    lista = [dic for dic in dic_anidado if dic_anidado[dic] == atributo]
+    #lista = [dic for dic in dic_anidado if atributo in dic[]]
+    lista = []
+    for dic in dic_anidado:
+        for key in dic:
+            lista.append(key)
+    return lista
+
+print(reduce(dics,"alcohol"))
