@@ -25,7 +25,7 @@ def read_data(fichero):
                 dic["alcohol"] = row[11]
                 dic["quality"] = row[12]
 
-                dic_anidado["dato "+str(contador)] = dic
+                dic_anidado["dato"+str(contador)] = dic
                 contador = contador+1
     return dic_anidado
 
@@ -38,16 +38,20 @@ def split(dic_anidado):
 
     dic_white = { dic for dic in dic_anidado if dic_anidado[dic]["type"] == "white"}
     dic_red = { dic for dic in dic_anidado if dic_anidado[dic]["type"] == "red"}
-    return dic_white, dic_red
+    return (dic_white, dic_red)
 
-dics = split(read_data(url))
+tupla = split(read_data(url))
 
 def reduce(dic_anidado,atributo):
-    #lista = [dic for dic in dic_anidado if atributo in dic[]]
+    #lista = [dic for dic in dic_anidado if atributo in dic]
     lista = []
     for dic in dic_anidado:
         for key in dic:
-            lista.append(key)
+            lista.append(dic[key])
     return lista
 
-print(reduce(dics,"alcohol"))
+
+print(reduce(tupla[1],"alcohol"))
+
+
+
